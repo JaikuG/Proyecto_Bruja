@@ -16,7 +16,8 @@ void ADoor::BeginPlay()
 {
 	Super::BeginPlay();
 	
-	UE_LOG(LogTemp, Warning, TEXT("Hello World!"));
+	UE_LOG(LogTemp, Display, TEXT("Door: %S"), *DoorName);
+	StartLocation = GetActorLocation();
 }
 
 // Called every frame
@@ -24,5 +25,20 @@ void ADoor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	OpenDoor(DeltaTime);
 }
 
+void ADoor::OpenDoor(float DeltaTime)
+{
+	FVector NewLocation = GetActorLocation() + (Axes * Speed * DeltaTime);
+	
+	if (ShouldMove(NewLocation))
+	{
+		SetActorLocation(NewLocation);
+	}
+}
+
+bool ADoor::ShouldMove(FVector& NewLocation)
+{
+	return FVector::Dist(StartLocation, NewLocation) <= MaxDistance;
+}

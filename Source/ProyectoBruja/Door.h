@@ -19,13 +19,25 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	void OpenDoor(float DeltaTime);
+
+	bool ShouldMove(FVector& NewLocation);
+
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UPROPERTY(EditAnywhere)
-		FString DoorName = "Door";
+		FString DoorName = "Default name";
 	
 	UPROPERTY(EditAnywhere)
-		FVector Axes;
+		FVector Axes = FVector(0.0f, 0.0f, 0.0f);
+
+	UPROPERTY(EditAnywhere)
+		float Speed = 0.0f;
+
+	UPROPERTY(EditAnywhere)
+		float MaxDistance = 0.0f;
+
+	FVector StartLocation;
 };
