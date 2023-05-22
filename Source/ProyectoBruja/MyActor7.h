@@ -23,4 +23,15 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	UPROPERTY(EditAnywhere)
+		FString DoorName = "Default name";
+
+	UPROPERTY(EditAnywhere)
+		FVector Axes;
+
+	UPROPERTY(EditAnywhere)
+		float Speed;
+
+	UPROPERTY(EditAnywhere)
+		float Desp;
 };

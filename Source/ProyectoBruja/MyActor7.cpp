@@ -15,13 +15,23 @@ AMyActor7::AMyActor7()
 void AMyActor7::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	UE_LOG(LogTemp, Warning, TEXT("AAAAAAAAAAAAAAAA"));
 }
 
 // Called every frame
 void AMyActor7::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	FVector StartPos = GetActorLocation();
+	FVector EndPos = StartPos + (Axes * Speed * DeltaTime);
+
+	if(FVector::Dist(StartPos, EndPos) <= Desp)
+	{
+		SetActorLocation(EndPos);
+	}
+
+
+
+	UE_LOG(LogTemp, Warning, TEXT("This is my door %s"), *DoorName);
 
 }
-
